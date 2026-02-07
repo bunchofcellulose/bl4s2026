@@ -2,7 +2,7 @@ alias tmake="rm test.root; hadd test.root output0_t0.root output0_t1.root output
 alias clean="rm -rf output*"
 alias g4make="cmake ..; and make -j4"
 alias run="g4make; and QT_QPA_PLATFORM=xcb ./main"
-alias troot="root --web=off test.root"
+alias oroot="root --web=off ../root/*"
 
 function runmt --description "Build, Run, and Save"
     set file $argv[1]

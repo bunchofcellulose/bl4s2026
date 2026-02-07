@@ -14,8 +14,9 @@ To build and run this simulation, you need the following software installed:
 
 ## Building the Project
 
-1.  Clone the repository.
-2.  Create a build directory (if it doesn't exist, though the workflow assumes it does or you are in it):
+1. Clone the repository.
+2. Create a build directory (if it doesn't exist, though the workflow assumes it does or you are in it):
+
     ```fish
     mkdir build
     ```
@@ -25,6 +26,7 @@ To build and run this simulation, you need the following software installed:
 The project includes a `env.fish` script helper to simplify building and running the simulation.
 
 ### 1. Setup Environment
+
 Source the environment script to load aliases and functions:
 
 ```fish
@@ -33,6 +35,7 @@ cd build
 ```
 
 ### 2. Run with Visualization (Interactive Mode)
+
 To build and run the simulation with the graphical user interface:
 
 ```fish
@@ -40,10 +43,12 @@ run
 ```
 
 This command will:
-1.  Run CMake and compile the project (using `make -j4`).
-2.  Launch the executable (`./main`) with `QT_QPA_PLATFORM=xcb`.
+
+1. Run CMake and compile the project (using `make -j4`).
+2. Launch the executable (`./main`) with `QT_QPA_PLATFORM=xcb`.
 
 ### 3. Run in Batch Mode (Macro)
+
 To build, run the simulation using `mac/run.mac`, and save the resulting ROOT output:
 
 ```fish
@@ -52,12 +57,27 @@ runmt FILENAME.root
 
 *Replace `FILENAME.root` with your desired output filename.*
 
-This command handles the full workflow:
-1.  Compiles the project.
-2.  Executes the simulation using the `run.mac` macro.
-3.  Merges thread outputs (e.g., `output0_t*.root`) into a single file.
-4.  Moves the final file to the `root/` directory in the project root.
-5.  Cleans up temporary output files.
+This command will run the `run.mac` macro without visual output and save the results to `root/FILENAME.root`. The workflow includes:
+
+## Analyzing Output
+
+To analyze the output ROOT files, you can use the following alias:
+
+```fish
+oroot
+```
+
+This will open the ROOT terminal, after which you can open the TBrowser to inspect the contents of the ROOT files:
+
+```root
+new TBrowser;
+```
+
+To exit the ROOT terminal, simply type:
+
+```root
+.q
+```
 
 ## Project Structure
 
