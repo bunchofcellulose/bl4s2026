@@ -11,7 +11,7 @@ MyDetectorConstruction::MyDetectorConstruction()
     fMessenger->DeclareProperty("hasScintillator", hasScintillator = false, "Include scintillator");
     fMessenger->DeclareProperty("hasCherenkov", hasCherenkov = false, "Include Cherenkov");
     fMessenger->DeclareProperty("hasDetector", hasDetector = true, "Include photon detector");
-    fMessenger->DeclareProperty("shieldType", shieldType = "control", "Shield type STL file");
+    fMessenger->DeclareProperty("shieldType", shieldType = "solid", "Shield type STL file");
 
     xWorld = 0.5 * m;
     yWorld = 0.5 * m;
@@ -100,34 +100,11 @@ void MyDetectorConstruction::ConstructCalorimeter(G4LogicalVolume *logicWorld)
     new G4PVPlacement(0, G4ThreeVector(0., 0., 0.8 * m), logicCalorimeter, "physCalorimeter", logicWorld, false, 0, true);
 }
 
-void MyDetectorConstruction::ConstructShield(G4LogicalVolume *logicWorld, G4String name)
+void MyDetectorConstruction::ConstructShield(G4LogicalVolume *logicWorld, G4VSolid* solidShield)
 {
-    auto mesh = CADMesh::TessellatedMesh::FromSTL("stl/" + name);
-    G4VSolid *solidMesh = mesh->GetSolid();
-    G4LogicalVolume *logicMesh = new G4LogicalVolume(solidMesh, G4Material::GetMaterial("W"), "logicMesh");
+    G4LogicalVolume *logicShield = new G4LogicalVolume(solidShield, G4Material::GetMaterial("W"), "logicShield");
     // new G4PVPlacement(0, G4ThreeVector(0, 0, 0), logicMesh, "physMesh", logicWorld, false, 0, true);
-    new G4PVPlacement(0, G4ThreeVector(0, 0, 0), logicMesh, "physMesh", logicWorld, false, 0, false);
-}
-
-void MyDetectorConstruction::ConstructControl(G4LogicalVolume* logicWorld) {
-    G4Box* solidControl = new G4Box("solidControl", 1.0*cm, 1.0*cm, 0.8*cm);
-
-    G4LogicalVolume* logicControl = new G4LogicalVolume(
-        solidControl, 
-        G4Material::GetMaterial("W"),
-        "logicControl"
-    );
-
-    new G4PVPlacement(
-        0, 
-        G4ThreeVector(0, 0, 0), 
-        logicControl, 
-        "physControl", 
-        logicWorld, 
-        false, 
-        0, 
-        true
-    );
+    new G4PVPlacement(0, G4ThreeVector(0, 0, 0), logicShield, "physShield", logicWorld, false, 0, false);
 }
 
 void MyDetectorConstruction::ConstructSDandField()
@@ -163,10 +140,18 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
     if (hasCherenkov)
         ConstructCherenkov(logicWorld);
     if (hasShield) {
-        if (shieldType == "control")
-            ConstructControl(logicWorld);
-        else
-            ConstructShield(logicWorld, shieldType);
+        G4VSolid *solidShield;
+        if (shieldType == "plate")
+            solidShield = new G4Box("solidPlate", 1.0*cm, 1.0*cm, 0.8*cm);
+        else if (shieldType == "solid")
+            solidShield = new G4Box("solidSolid", 1.5*cm, 1.5*cm, 1.5*cm);
+        else if (shieldType == "cone")
+            solidShield = new G4Cons("solidCone", 0, 1.5*cm, 0, 0.0*cm, 1.5*cm, 0, 360*deg);
+        else {
+            auto mesh = CADMesh::TessellatedMesh::FromSTL("stl/" + shieldType);
+            solidShield = mesh->GetSolid();
+        }
+        ConstructShield(logicWorld, solidShield);
     }
     if (hasDetector)
         ConstructDetector(logicWorld);

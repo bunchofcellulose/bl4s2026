@@ -1,4 +1,4 @@
-/setup/shieldType gyroid.stl
+/setup/shieldType cone
 
 /run/initialize
 

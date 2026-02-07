@@ -16,6 +16,7 @@
 #include "G4SDManager.hh"
 #include "G4GeometryManager.hh"
 #include "CADMesh.hh"
+#include "G4Cons.hh"
 
 class MyDetectorConstruction: public G4VUserDetectorConstruction {
 public:
@@ -32,8 +33,7 @@ private:
     void ConstructCollimator(G4LogicalVolume* logicWorld);
     void ConstructDetector(G4LogicalVolume* logicWorld);
     void ConstructCalorimeter(G4LogicalVolume* logicWorld);
-    void ConstructShield(G4LogicalVolume* logicWorld, G4String name);
-    void ConstructControl(G4LogicalVolume* logicWorld);
+    void ConstructShield(G4LogicalVolume* logicWorld, G4VSolid* solidShield);
 
     G4bool hasCalorimeter, hasShield, hasCollimator, hasScintillator, hasCherenkov, hasDetector;
     G4String shieldType;

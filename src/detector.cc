@@ -57,10 +57,6 @@ G4bool MySensitiveDetector::ProcessHits(G4Step* step, G4TouchableHistory* histor
         G4cout << "Hit in volume: " << volName << ", particle: " << particleName << G4endl;
     #endif
 
-    if (particleName == "gamma") {
-        track->SetTrackStatus(fStopAndKill);
-    }
-
     G4ThreeVector posParticle = prePoint->GetPosition();
     G4double energy = postPoint->GetKineticEnergy();
     G4ThreeVector momParticle = postPoint->GetMomentum();

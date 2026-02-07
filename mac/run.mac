@@ -1,9 +1,9 @@
 /run/numberOfThreads 4
 
-# /setup/shieldType gyroid.stl
+/setup/shieldType solid
 
 /run/initialize
 
-/control/execute mac/cernneg.mac
+/control/execute mac/cernpos.mac
 
 /run/beamOn 10000
