@@ -11,7 +11,7 @@ MyDetectorConstruction::MyDetectorConstruction()
     fMessenger->DeclareProperty("hasScintillator", hasScintillator = false, "Include scintillator");
     fMessenger->DeclareProperty("hasCherenkov", hasCherenkov = false, "Include Cherenkov");
     fMessenger->DeclareProperty("hasDetector", hasDetector = true, "Include photon detector");
-    fMessenger->DeclareProperty("shieldType", shieldType = "schwarzD.stl", "Shield type STL file");
+    fMessenger->DeclareProperty("shieldType", shieldType = "control", "Shield type STL file");
 
     xWorld = 0.5 * m;
     yWorld = 0.5 * m;
@@ -110,7 +110,7 @@ void MyDetectorConstruction::ConstructShield(G4LogicalVolume *logicWorld, G4Stri
 }
 
 void MyDetectorConstruction::ConstructControl(G4LogicalVolume* logicWorld) {
-    G4Box* solidControl = new G4Box("solidControl", 1.5*cm, 1.5*cm, 1.5*cm);
+    G4Box* solidControl = new G4Box("solidControl", 1.0*cm, 1.0*cm, 0.8*cm);
 
     G4LogicalVolume* logicControl = new G4LogicalVolume(
         solidControl, 

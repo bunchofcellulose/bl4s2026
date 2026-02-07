@@ -11,6 +11,7 @@ MyRunAction::MyRunAction()
     analysisManager->CreateNtupleDColumn("fZ");
     analysisManager->CreateNtupleDColumn("fE");
     analysisManager->CreateNtupleDColumn("fp");
+    analysisManager->CreateNtupleDColumn("fm");
     analysisManager->FinishNtuple(0);
 
     analysisManager->CreateNtuple("Calorimeter", "Calorimeter Data");

@@ -1,11 +1,12 @@
+/setup/shieldType gyroid.stl
+
 /run/initialize
-/vis/open OGL
+
+/vis/open TSG
 /vis/viewer/set/viewpointVector 1 1 1
 /vis/drawVolume
 /vis/viewer/set/autoRefresh true
 /vis/scene/add/trajectories smooth
-/vis/scene/add/eventID
 /vis/scene/endOfEventAction accumulate
 
 /control/execute mac/cernneg.mac
-/setup/shieldType gyroid.stl

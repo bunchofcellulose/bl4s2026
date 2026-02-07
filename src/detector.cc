@@ -64,6 +64,11 @@ G4bool MySensitiveDetector::ProcessHits(G4Step* step, G4TouchableHistory* histor
     G4ThreeVector posParticle = prePoint->GetPosition();
     G4double energy = postPoint->GetKineticEnergy();
     G4ThreeVector momParticle = postPoint->GetMomentum();
+    G4double massParticle = postPoint->GetMass();
+
+    if (momParticle.z() > 0) {
+        return true;
+    }
 
     analysisManager->FillNtupleIColumn(0, 0, evt);
     analysisManager->FillNtupleDColumn(0, 1, posParticle.x());
@@ -71,6 +76,7 @@ G4bool MySensitiveDetector::ProcessHits(G4Step* step, G4TouchableHistory* histor
     analysisManager->FillNtupleDColumn(0, 3, posParticle.z());
     analysisManager->FillNtupleDColumn(0, 4, energy);
     analysisManager->FillNtupleDColumn(0, 5, momParticle.mag());
+    analysisManager->FillNtupleDColumn(0, 6, massParticle);
     analysisManager->AddNtupleRow(0);
 
     return true;

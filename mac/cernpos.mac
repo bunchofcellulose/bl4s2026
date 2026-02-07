@@ -1,0 +1,34 @@
+# =========================================================
+# CERN T9 Positive Beam (4 GeV/c)
+# =========================================================
+/gps/source/clear
+
+/gps/source/add 1
+/gps/particle pi+
+/gps/ene/mono 3.86 GeV
+/gps/pos/type Beam
+/gps/pos/centre 0 0 -150 cm
+/gps/pos/sigma_x 4 mm
+/gps/pos/sigma_y 4 mm
+/gps/direction 0 0 1
+/gps/source/intensity 0.50
+
+/gps/source/add 1
+/gps/particle proton
+/gps/ene/mono 3.17 GeV
+/gps/pos/type Beam
+/gps/pos/centre 0 0 -150 cm
+/gps/pos/sigma_x 4 mm
+/gps/pos/sigma_y 4 mm
+/gps/direction 0 0 1
+/gps/source/intensity 0.25
+
+/gps/source/add 1
+/gps/particle e+
+/gps/ene/mono 4.0 GeV
+/gps/pos/type Beam
+/gps/pos/centre 0 0 -150 cm
+/gps/pos/sigma_x 4 mm
+/gps/pos/sigma_y 4 mm
+/gps/direction 0 0 1
+/gps/source/intensity 0.25
