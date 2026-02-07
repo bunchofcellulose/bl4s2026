@@ -3,7 +3,7 @@
 
 MyDetectorConstruction::MyDetectorConstruction()
 {
-    fMessenger = new G4GenericMessenger(this, "/MyDetector/", "Detector construction control");
+    fMessenger = new G4GenericMessenger(this, "/setup/", "Setup construction control");
 
     fMessenger->DeclareProperty("hasCalorimeter", hasCalorimeter = true, "Include calorimeter");
     fMessenger->DeclareProperty("hasShield", hasShield = true, "Include shield");

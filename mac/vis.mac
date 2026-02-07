@@ -8,3 +8,4 @@
 /vis/scene/endOfEventAction accumulate
 
 /control/execute mac/cernneg.mac
+/Setup/shieldType gyroid.stl
