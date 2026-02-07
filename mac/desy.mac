@@ -1,0 +1,12 @@
+/gps/particle e-
+/gps/energy 4 GeV
+
+/gps/ene/type Gauss
+/gps/ene/mono 4 GeV
+/gps/ene/sigma 0.15 GeV
+
+/gps/pos/type Beam
+/gps/pos/centre 0. 0. -1.5 m
+/gps/pos/sigma_x 0.4 cm
+/gps/pos/sigma_y 0.4 cm
+/gps/direction 0 0 1

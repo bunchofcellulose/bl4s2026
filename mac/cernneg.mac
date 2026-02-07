@@ -1,0 +1,26 @@
+/gps/source/intensity 60
+/gps/particle pi-
+/gps/energy 4 GeV
+/gps/pos/type Beam
+/gps/pos/centre 0. 0. -1.5 m
+/gps/pos/sigma_x 0.4 cm
+/gps/pos/sigma_y 0.4 cm
+/gps/direction 0 0 1
+
+/gps/source/add 20
+/gps/particle e-
+/gps/energy 4 GeV
+/gps/pos/type Beam
+/gps/pos/centre 0. 0. -1.5 m
+/gps/pos/sigma_x 0.4 cm
+/gps/pos/sigma_y 0.4 cm
+/gps/direction 0 0 1
+
+/gps/source/add 5
+/gps/particle mu-
+/gps/energy 4 GeV
+/gps/pos/type Beam
+/gps/pos/centre 0. 0. -1.5 m
+/gps/pos/sigma_x 0.5 cm
+/gps/pos/sigma_y 0.5 cm
+/gps/direction 0 0 1
